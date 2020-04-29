@@ -7,6 +7,8 @@ import { FilesComponent } from './files/files.component';
 import { LoginComponent } from './login/login.component';
 
 import { AuthGuard } from './helpers/auth.guard';
+import { ProfileComponent } from './profile/profile.component';
+import { SignupComponent } from './signup/signup.component';
 
 
 const routes: Routes = [
@@ -14,6 +16,8 @@ const routes: Routes = [
   { path: 'videos', component: VideosComponent, canActivate: [AuthGuard] },
   { path: 'pictures', component: PicturesComponent, canActivate: [AuthGuard] },
   { path: 'files', component: FilesComponent, canActivate: [AuthGuard] },
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
+  { path: 'signup', component: SignupComponent },
   { path: 'login', component: LoginComponent },
   //will be redirect to if not login
   { path: '**', redirectTo: '' }

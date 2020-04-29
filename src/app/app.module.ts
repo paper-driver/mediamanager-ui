@@ -16,6 +16,8 @@ import { fakeBackendProvider } from './helpers/fake-backend';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ProfileComponent } from './profile/profile.component';
+import { SignupComponent } from './signup/signup.component';
 
 
 @NgModule({
@@ -25,7 +27,9 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
     PicturesComponent,
     FilesComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    ProfileComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
@@ -36,8 +40,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    // provider used to create fake backend
-    fakeBackendProvider
+    // // provider used to create fake backend
+    // fakeBackendProvider
   ],
   bootstrap: [AppComponent]
 })

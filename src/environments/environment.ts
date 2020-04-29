@@ -4,6 +4,8 @@
 
 export const environment = {
   apiUrl: 'http://localhost:4000',
+  loginUrl: 'http://localhost:8080/api/auth/signin',
+  signupUrl: 'http://localhost:8080/api/auth/signup',
   production: false
 };
 
