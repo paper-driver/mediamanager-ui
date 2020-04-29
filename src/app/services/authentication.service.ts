@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { map, first, catchError } from 'rxjs/operators';
 
 import { environment } from '../../environments/environment';
@@ -43,11 +43,11 @@ export class AuthenticationService {
             password: password }, httpOptions)
             .pipe(
                 map(result => {
-                    console.warn("internal login");
+                    console.warn("internal auto-login is in progress");
                     return this.login(username, password).pipe(first());
                 }),
                 catchError((err, caught) => {
-                    return err;
+                    return throwError(err);
                 }));
     }
 

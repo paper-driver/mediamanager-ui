@@ -1,10 +1,13 @@
 <!-- nav -->
 <nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="currentUser">
-    <div class="navbar-nav">
+    <a href="#" class="navbar-brand">Media Manager</a>
+    <div class="navbar-nav mr-auto">
         <a class="nav-item nav-link" routerLink="/">Home</a>
         <a class="nav-item nav-link" routerLink="/videos">Videos</a>
         <a class="nav-item nav-link" routerLink="/pictures">Pictures</a>
         <a class="nav-item nav-link" routerLink="/files">Files</a>
+    </div>
+    <div class="navbar-nav ml-auto" >
         <a class="nav-item nav-link" routerLink="/profile">{{ currentUser.username }}</a>
         <a class="nav-item nav-link" (click)="logout()">Logout</a>
     </div>
@@ -18,9 +21,6 @@
 <!-- credits -->
 <div class="text-center mt-4">
     <p>
-        <a href="https://jasonwatmore.com/post/2020/04/19/angular-9-jwt-authentication-example-tutorial" target="_top">Angular 9 - JWT Authentication Example & Tutorial</a>
-    </p>
-    <p>
-        <a href="https://jasonwatmore.com" target="_top">JasonWatmore.com</a>
+        <a href="https://github.com/paper-driver" target="_top">Github - paper-driver</a>
     </p>
 </div>

@@ -63,13 +63,13 @@ export class SignupComponent implements OnInit {
               this.router.navigate([this.returnUrl]);
             },
             error => {
-              this.error = error;
+              this.error = error.error.message;
               this.loading = false;
             }
           )
         },
         error => {
-          this.error = error;
+          this.error = JSON.stringify(error);
           this.loading = false;
         });
   }
