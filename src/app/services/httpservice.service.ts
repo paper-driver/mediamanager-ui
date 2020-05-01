@@ -29,4 +29,14 @@ export class HttpserviceService {
   getRoleTypes(): Observable<any>{
     return this.http.get<Role[]>(environment.roletypes, httpOptions);
   }
+
+  updateProfile(username:String, email:String, roles:Role[], password:String): Observable<any>{
+    return this.http.post(environment.updateProfile, 
+      {
+        username: username,
+        email: email,
+        role: roles,
+        password: password
+      }, httpOptions);
+  }
 }

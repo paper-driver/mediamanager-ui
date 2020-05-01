@@ -4,8 +4,11 @@
 
 export const environment = {
   apiUrl: 'http://localhost:4000',
+  api: 'http://localhost:8080/api',
   loginUrl: 'http://localhost:8080/api/auth/signin',
   signupUrl: 'http://localhost:8080/api/auth/signup',
+  roletypes: 'http://localhost:8080/api/roletypes',
+  updateProfile: 'http://localhost:8080/api/updateprofile',
   production: false
 };
 
