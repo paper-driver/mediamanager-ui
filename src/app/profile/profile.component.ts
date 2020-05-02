@@ -26,6 +26,8 @@ export class ProfileComponent implements OnInit {
   submitted = false;
   error = '';
   hide = true;
+  isSuccessful = false;
+  msg: any;
 
   constructor(
     private authenticationService : AuthenticationService, 
@@ -75,31 +77,30 @@ export class ProfileComponent implements OnInit {
     }
 
     let checkPwdFlag = this.checkNewPassword();
-
-    // this.loading = true;
-    // this.authenticationService.signup(this.f.username.value, this.f.email.value, this.f.password.value)
-    // .subscribe(
-    //   (data:Observable<any>) => {
-    //     console.log(data);
-    //     console.log("finished login")
-    //     data.subscribe(
-    //       result => {
-    //         // this.router.navigate([this.returnUrl]);
-    //       },
-    //       error => {
-    //         this.error = error.error.message;
-    //         this.loading = false;
-    //       }
-    //     )
-    //   },
-    //   error => {
-    //     this.error = JSON.stringify(error);
-    //     this.loading = false;
-    //   });
+    if(checkPwdFlag){
+      this.loading = true;
+      this.httpservice.updateProfile(
+        this.currentUser.username, this.f.email.value, this.f.roles.value, this.f.newpwd.value)
+        .subscribe(
+          data => {
+            console.log(data);
+            this.isSuccessful = true;
+            this.loading = false;
+            this.msg = data.message;
+          },
+          err => {
+            this.error = JSON.stringify(err);
+            this.loading = false;
+          }
+        );
+    }
   }
 
   checkNewPassword(){
-    if(this.f.newpwd.value != null || this.f.newpwd.value != ""){
+    if(this.f.newpwd.value == null || this.f.newpwd.value == ""){
+      this.error = "";
+      return true;
+    }else{
       if(this.f.confirmpwd.value == null || this.f.confirmpwd.value == ""){
         this.error = "Please confirm your new password";
         return false;
@@ -112,9 +113,6 @@ export class ProfileComponent implements OnInit {
           return false;
         }
       }
-    }else{
-      this.error = "";
-      return true;
     }
   }
 
