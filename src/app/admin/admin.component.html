@@ -1,11 +1,19 @@
 <div class="card mt-4">
-    <h4 class="card-header">List of pending Role update requests</h4>
+    <h4 class="card-header">
+        List of pending Role update requests
+        <span *ngIf="loading" class="spinner-border"></span>
+    </h4>
     <div class="card-body">
+        <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+
         <div class="mat-elevation-z8">
             <table mat-table [dataSource]="dataSource">
                 <ng-container .mat-column-token matColumnDef="token">
                     <th mat-header-cell *matHeaderCellDef> Token </th>
-                    <td mat-cell *matCellDef="let request"> {{request.token}} </td>
+                    <td mat-cell *matCellDef="let request"> 
+                        {{ request.token.substring(0, 5) }} ...
+                        {{ request.token.substr(request.token.length - 5) }}
+                    </td>
                 </ng-container>
 
                 <ng-container .mat-column-username matColumnDef="username">
@@ -18,9 +26,30 @@
                     <td mat-cell *matCellDef="let request"> {{request.email}} </td>
                 </ng-container>
 
+                <ng-container .mat-column-expiryDate matColumnDef="expiryDate">
+                    <th mat-header-cell *matHeaderCellDef> Expiry Date </th>
+                    <td mat-cell *matCellDef="let request"> {{request.expiryDate}} </td>
+                </ng-container>
+
                 <ng-container .mat-column-roles matColumnDef="pendingRoles">
                     <th mat-header-cell *matHeaderCellDef> Requested Roles </th>
                     <td mat-cell *matCellDef="let request"> {{request.pendingRoles}} </td>
+                </ng-container>
+
+                <ng-container .mat-column-button matColumnDef="buttons">
+                    <th mat-header-cell *matHeaderCellDef> Authorize </th>
+                    <td mat-cell *matCellDef="let request">
+                        <button [disabled]="this[request.username + '-loading']" [hidden]="this[request.username + '-approved'] || this[request.username + '-rejected']" mat-stroked-button color="accent" (click)="approveRequest(request)">
+                            <span *ngIf="this[request.username + '-loading']" class="spinner-border spinner-border-sm mr-1"></span>
+                            Approve
+                        </button>
+                        <div class="divider"></div>
+                        <button [disabled]="this[request.username + '-loading']" [hidden]="this[request.username + '-approved'] || this[request.username + '-rejected']" mat-stroked-button color="warn" (click)="rejectRequest(request)">
+                            <span *ngIf="this[request.username + '-loading']" class="spinner-border spinner-border-sm mr-1"></span>
+                            Reject
+                        </button>
+                        <mat-icon [hidden]="!this[request.username + '-approved'] && !this[request.username + '-rejected']">{{ this[request.username + '-approved'] ? "check" :  "close" }}</mat-icon>
+                    </td>
                 </ng-container>
 
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

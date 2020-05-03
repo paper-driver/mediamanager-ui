@@ -10,6 +10,8 @@ export const environment = {
   roletypes: 'http://localhost:8080/api/protected/roletypes',
   updateProfile: 'http://localhost:8080/api/protected/updateprofile',
   getAllRequests: 'http://localhost:8080/api/protected/requests',
+  approveRequest: 'http://localhost:8080/api/public/roleconfirmation?token=',
+  rejectRequest: 'http://localhost:8080/api/public/rolerejection?token=',
   production: false
 };
 

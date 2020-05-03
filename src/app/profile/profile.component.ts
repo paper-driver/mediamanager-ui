@@ -20,6 +20,7 @@ export class ProfileComponent implements OnInit {
   emailForm = new FormControl();
   newpwdForm = new FormControl();
   confirmpwdForm = new FormControl();
+  tokenForm = new FormControl();
 
   formGroup: FormGroup;
   loading = false;
@@ -37,7 +38,15 @@ export class ProfileComponent implements OnInit {
     this.authenticationService.currentUser
     .subscribe(x => {
       this.currentUser = x;
-      this.emailForm.setValue(this.currentUser.email);
+      if(this.currentUser != null){
+        this.emailForm.setValue(this.currentUser.email);
+        this.tokenForm.setValue(
+          this.currentUser.accessToken.substring(0, 20) 
+          + " ... " 
+          + this.currentUser.accessToken.substr(this.currentUser.accessToken.length - 20)
+        );
+        this.tokenForm.disable();
+      }
     });
    }
 
@@ -46,7 +55,8 @@ export class ProfileComponent implements OnInit {
       email: this.emailForm,
       roles: this.roleForm,
       newpwd: this.newpwdForm,
-      confirmpwd: this.confirmpwdForm
+      confirmpwd: this.confirmpwdForm,
+      token: this.tokenForm
     })
 
     this.httpservice.getRoleTypes().subscribe(

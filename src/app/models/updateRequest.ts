@@ -1,4 +1,4 @@
-export class Request {
+export class UpdateRequest {
     token: string;
     username: string;
     email: string;

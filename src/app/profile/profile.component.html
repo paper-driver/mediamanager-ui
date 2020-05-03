@@ -4,12 +4,18 @@
         <strong>{{ currentUser.username }}</strong> Profile
       </h3>
     </header>
-    <p>
+    <!-- <p>
       <strong>Token: </strong>
       {{ currentUser.accessToken.substring(0, 20) }} ...
       {{ currentUser.accessToken.substr(currentUser.accessToken.length - 20) }}
-    </p>
-    <form [formGroup]="formGroup">
+    </p> -->
+    <form class="form-container mat-app-background" [formGroup]="formGroup">
+        <div class="form-group">
+            <mat-form-field >
+                <mat-label>Access Token</mat-label>
+                <input matInput type="text" placeholder="access token" [formControl]="tokenForm" required>
+            </mat-form-field>
+        </div>
         <div class="form-group">
             <mat-form-field >
                 <mat-label>Email</mat-label>
