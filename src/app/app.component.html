@@ -8,6 +8,7 @@
         <a class="nav-item nav-link" routerLink="/files">Files</a>
     </div>
     <div class="navbar-nav ml-auto" >
+        <a class="nav-item nav-link" *ngIf="showAdminBoard" routerLink="/admin">Admin</a>
         <a class="nav-item nav-link" routerLink="/profile">{{ currentUser.username }}</a>
         <a class="nav-item nav-link" (click)="logout()">Logout</a>
     </div>

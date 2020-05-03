@@ -20,6 +20,7 @@ import { SignupComponent } from './signup/signup.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
+import { AdminComponent } from './admin/admin.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { MaterialModule } from './material.module';
     HomeComponent,
     LoginComponent,
     ProfileComponent,
-    SignupComponent
+    SignupComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,

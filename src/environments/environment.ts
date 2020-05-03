@@ -9,6 +9,7 @@ export const environment = {
   signupUrl: 'http://localhost:8080/api/auth/signup',
   roletypes: 'http://localhost:8080/api/protected/roletypes',
   updateProfile: 'http://localhost:8080/api/protected/updateprofile',
+  getAllRequests: 'http://localhost:8080/api/protected/requests',
   production: false
 };
 

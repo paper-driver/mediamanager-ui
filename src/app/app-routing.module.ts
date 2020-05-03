@@ -9,6 +9,8 @@ import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './helpers/auth.guard';
 import { ProfileComponent } from './profile/profile.component';
 import { SignupComponent } from './signup/signup.component';
+import { AdminComponent } from './admin/admin.component';
+import { RoleGuardService as RoleGuard } from './helpers/role-guard.service';
 
 
 const routes: Routes = [
@@ -17,6 +19,7 @@ const routes: Routes = [
   { path: 'pictures', component: PicturesComponent, canActivate: [AuthGuard] },
   { path: 'files', component: FilesComponent, canActivate: [AuthGuard] },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
+  { path: 'admin', component: AdminComponent, canActivate: [RoleGuard], data: {expectedRole: 'ROLE_ADMIN'}},
   { path: 'signup', component: SignupComponent },
   { path: 'login', component: LoginComponent },
   //will be redirect to if not login
