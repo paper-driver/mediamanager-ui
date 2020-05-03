@@ -4,7 +4,7 @@ import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { map, first, catchError } from 'rxjs/operators';
 
 import { environment } from '../../environments/environment';
-import { User, Role } from '../models/';
+import { User, Role, Request } from '../models/';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -38,5 +38,9 @@ export class HttpserviceService {
         role: roles,
         password: password
       }, httpOptions);
+  }
+
+  getAllRequests(): Observable<any>{
+    return this.http.get<Request[]>(environment.getAllRequests, httpOptions);
   }
 }

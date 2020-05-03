@@ -78,6 +78,7 @@ export class ProfileComponent implements OnInit {
 
     let checkPwdFlag = this.checkNewPassword();
     if(checkPwdFlag){
+      console.log("updating profile for " + this.currentUser.username);;
       this.loading = true;
       this.httpservice.updateProfile(
         this.currentUser.username, this.f.email.value, this.f.roles.value, this.f.newpwd.value)
