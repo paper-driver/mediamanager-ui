@@ -6,5 +6,6 @@
         <ul *ngIf="users">
             <li *ngFor="let user of users">{{user.username}}</li>
         </ul>
+        <button (click)="checkStorageApi()">check storage api</button>
     </div>
 </div>
