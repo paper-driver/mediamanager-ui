@@ -1,1 +1,42 @@
-<p>files works!</p>
+<div class="card mt-4">
+    <h4 class="card-header mat-app-background">
+        File Dashboard
+    </h4>
+    <div class="card-body">
+        <div *ngIf="currentFile" class="progress">
+            <div
+              class="progress-bar progress-bar-info progress-bar-striped"
+              role="progressbar"
+              attr.aria-valuenow="{{ progress }}"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              [ngStyle]="{ width: progress + '%' }"
+            >
+              {{ progress }}%
+            </div>
+        </div>
+        
+        <label>
+            <input type="file" (change)="selectFile($event)" />
+        </label>
+          
+        <button mat-raised-button color="primary" [disabled]="!selectedFiles" (click)="upload()">
+            Upload
+        </button>
+          
+        <div class="alert alert-light" role="alert">{{ message }}</div>
+          
+        <div class="card">
+            <h5 class="card-header mat-app-background">List of Files</h5>
+            <ul
+                class="list-group list-group-flush"
+                *ngFor="let file of fileInfos | async"
+            >
+                <li class="list-group-item">
+                <a href="{{ file.url }}">{{ file.name }}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+

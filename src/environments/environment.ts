@@ -12,6 +12,10 @@ export const environment = {
   getAllRequests: 'http://localhost:8080/api/protected/requests',
   approveRequest: 'http://localhost:8080/api/public/roleconfirmation?token=',
   rejectRequest: 'http://localhost:8080/api/public/rolerejection?token=',
+
+  uploadFileUrl: 'http://localhost:8080/api/storage/upload',
+  getFilesUrl: 'http://localhost:8080/api/storage/files',
+  getFileUrl: 'http://localhost:8080/api/storage/file',
   production: false
 };
 
