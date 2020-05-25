@@ -1,0 +1,62 @@
+<div class="container" *ngIf="currentUser; else loggedOut">
+    <header >
+      <h3 class="jumbotron">
+        <strong>{{ currentUser.username }}</strong> Profile
+      </h3>
+    </header>
+    <!-- <p>
+      <strong>Token: </strong>
+      {{ currentUser.accessToken.substring(0, 20) }} ...
+      {{ currentUser.accessToken.substr(currentUser.accessToken.length - 20) }}
+    </p> -->
+    <form class="form-container mat-app-background" [formGroup]="formGroup">
+        <div class="form-group">
+            <mat-form-field >
+                <mat-label>Access Token</mat-label>
+                <input matInput type="text" placeholder="access token" [formControl]="tokenForm" required>
+            </mat-form-field>
+        </div>
+        <div class="form-group">
+            <mat-form-field >
+                <mat-label>Email</mat-label>
+                <input matInput type="email" placeholder="mail@example.com" [formControl]="emailForm" required>
+            </mat-form-field>
+        </div>
+        <div class="form-group">
+            <mat-form-field>
+                <mat-label>Roles</mat-label>
+                <mat-select [formControl]="roleForm" multiple required>
+                    <mat-option *ngFor="let role of roles" [value]="role">{{ role.name }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="form-group">
+            <mat-form-field>
+                <mat-label>New Password</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'" placeholder="at least 6 characters" [formControl]="newpwdForm">
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+            </mat-form-field>
+            <div class="divider"></div>
+            <mat-form-field>
+                <mat-label>Confirm New Password</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'" placeholder="at least 6 characters" [formControl]="confirmpwdForm">
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+            </mat-form-field>
+        </div>
+        <button [disabled]="loading" class="btn btn-primary" (click)="onSubmit()">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+            Update Profile
+        </button>
+        <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+        <div *ngIf="isSuccessful" class="alert alert-success">{{ msg }}</div>
+    </form>
+  </div>
+  
+  <ng-template #loggedOut>
+    Please login.
+  </ng-template>
+  

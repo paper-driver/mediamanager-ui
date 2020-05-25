@@ -3,6 +3,15 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
+  apiUrl: 'http://localhost:4000',
+  api: 'http://localhost:8080/api',
+  loginUrl: 'http://localhost:8080/api/auth/signin',
+  signupUrl: 'http://localhost:8080/api/auth/signup',
+  roletypes: 'http://localhost:8080/api/protected/roletypes',
+  updateProfile: 'http://localhost:8080/api/protected/updateprofile',
+  getAllRequests: 'http://localhost:8080/api/protected/requests',
+  approveRequest: 'http://localhost:8080/api/public/roleconfirmation?token=',
+  rejectRequest: 'http://localhost:8080/api/public/rolerejection?token=',
   production: false
 };
 
