@@ -8,6 +8,11 @@ This branch has a temporary button to check status of [storage-api(personal-oaut
 
 This branch is utilized to use [mediamanger(personal-oauth2-01)](https://github.com/paper-driver/mediamanager/tree/feature/personal-oauth2-01) to successifully access the api of the storage server.
 
+(5/25/2020) - user can upload and load files from storage but files are stored in the common folder.
+
+#### Access Flow Diagram
+![Access Flow Diagram](MediaManager.png)
+
 **SIDE NOTE**
 This branch can also use [mediamanager(feature/fifth)](https://github.com/paper-driver/mediamanager/tree/feature/fifth) with [storage-api(feature/second)](https://github.com/paper-driver/storage-api/tree/feature/second) to achieve GitHub OAuth2 SSO. However, originally, GitHub API is aimed to use Authorization code grant flow, so the token used to establish server-to-server communciation was forcefully obtained through the manual separate requests outside of the network. Therefore, this approach is not recommended.
 
