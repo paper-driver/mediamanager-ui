@@ -21,6 +21,10 @@ import { SignupComponent } from './signup/signup.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import { AdminComponent } from './admin/admin.component';
+import { MaterialFileInputModule } from 'ngx-material-file-input';
+import { NewFolderDialogComponent } from './files/modals/new-folder-dialog/new-folder-dialog.component';
+import { RenameDialogComponent } from './files/modals/rename-dialog/rename-dialog.component';
+import { FileExplorerComponent } from './files/file-explorer/file-explorer.component';
 
 
 @NgModule({
@@ -33,7 +37,10 @@ import { AdminComponent } from './admin/admin.component';
     LoginComponent,
     ProfileComponent,
     SignupComponent,
-    AdminComponent
+    AdminComponent,
+    NewFolderDialogComponent,
+    RenameDialogComponent,
+    FileExplorerComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +48,8 @@ import { AdminComponent } from './admin/admin.component';
     ReactiveFormsModule,
     HttpClientModule,
     MaterialModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MaterialFileInputModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

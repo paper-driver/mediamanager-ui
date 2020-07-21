@@ -3,6 +3,9 @@ import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { UploadFileService } from '../services';
+import { FormControl, FormBuilder, FormGroup } from '@angular/forms';
+import { FileService } from '../services/file.service';
+import { FileElement } from './model/element';
 
 @Component({
   selector: 'app-files',
@@ -10,17 +13,16 @@ import { UploadFileService } from '../services';
   styleUrls: ['./files.component.scss']
 })
 export class FilesComponent implements OnInit {
-  selectedFiles: FileList;
-  currentFile: File;
-  progress = 0;
-  message = '';
+  public fileElements: Observable<FileElement[]>;
 
-  fileInfos: Observable<any>;
+  constructor(public fileService: FileService) { }
 
-  constructor(private uploadService: UploadFileService) { }
+  currentRoot: FileElement;
+  currentPath: string;
+  canNavigateUp = false;
 
   ngOnInit(): void {
-    this.fileInfos = this.uploadService.getFiles();
+    this.fileService.queryInFolder(this.currentRoot ? this.currentRoot.uuid : null)
   }
 
   selectFile(event) {
@@ -38,11 +40,13 @@ export class FilesComponent implements OnInit {
         } else if (event instanceof HttpResponse) {
           this.message = event.body.message;
           this.fileInfos = this.uploadService.getFiles();
+          this.isSuccessful = true;
         }
       },
       err => {
         this.progress = 0;
-        this.message = 'Could not upload the file!';
+        this.err = 'Could not upload the file!';
+        this.error = true;
         this.currentFile = undefined;
       });
   

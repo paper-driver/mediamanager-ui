@@ -1,8 +1,8 @@
-<div class="card mt-4">
+<!-- <div class="card mt-4">
     <h4 class="card-header mat-app-background">
         File Dashboard
     </h4>
-    <div class="card-body">
+    <div class="card-body mat-app-background">
         <div *ngIf="currentFile" class="progress">
             <div
               class="progress-bar progress-bar-info progress-bar-striped"
@@ -16,15 +16,18 @@
             </div>
         </div>
         
-        <label>
-            <input type="file" (change)="selectFile($event)" />
-        </label>
-          
+        <form [formGroup]="fileForm">
+            <mat-form-field appearance="outline">
+                <mat-label>File</mat-label>
+                <ngx-mat-file-input formControlName="file" placeholder="No file chosen" (change)="selectFile($event)"></ngx-mat-file-input>
+                <mat-icon matSuffix>folder</mat-icon>
+            </mat-form-field>
+        </form>
         <button mat-raised-button color="primary" [disabled]="!selectedFiles" (click)="upload()">
-            Upload
+        Upload
         </button>
-          
-        <div class="alert alert-light" role="alert">{{ message }}</div>
+        <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{ err }}</div>
+        <div *ngIf="isSuccessful" class="alert alert-success">{{ message }}</div>
           
         <div class="card">
             <h5 class="card-header mat-app-background">List of Files</h5>
@@ -38,5 +41,12 @@
             </ul>
         </div>
     </div>
-</div>
+</div> -->
+
+<mat-card style="height: 100%; box-sizing: border-box; padding:0">
+    <file-explorer [fileElements]="fileElements | async" [path]="currentPath" [canNavigateUp]="canNavigateUp" (folderAdded)="addFolder($event)"
+      (elementRemoved)="removeElement($event)" (navigatedDown)="navigateToFolder($event)" (navigatedUp)="navigateUp()" (elementRenamed)="renameElement($event)"
+      (elementMoved)="moveElement($event)">
+    </file-explorer>
+</mat-card>
 

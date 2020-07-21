@@ -16,6 +16,7 @@ export const environment = {
   uploadFileUrl: 'http://localhost:8080/api/storage/upload',
   getFilesUrl: 'http://localhost:8080/api/storage/files',
   getFileUrl: 'http://localhost:8080/api/storage/file',
+  uploadFolderUrl: 'http://localhost:8080/api/storage/uploadfolder',
   production: false
 };
 
