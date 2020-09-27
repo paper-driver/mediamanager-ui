@@ -9,6 +9,7 @@ This branch has a temporary button to check status of [storage-api(personal-oaut
 This branch is utilized to use [mediamanger(personal-oauth2-01)](https://github.com/paper-driver/mediamanager/tree/feature/personal-oauth2-01) to successifully access the api of the storage server.
 
 (5/25/2020) - user can upload and load files from storage but files are stored in the common folder.
+
 (9/27/2020) - this branch is now compatiable with [storage-api(personal-oauth2-resource-02)](https://github.com/paper-driver/storage-api/tree/feature/personal-oauth2-resource-02) and [mediamanager(personal-oauth2-03)](https://github.com/paper-driver/mediamanager/tree/feature/personal-oauth2-03). File is uploadable and downloadable from UI now.
 
 #### Access Flow Diagram
